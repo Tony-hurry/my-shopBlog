@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Toast from '@/components/common/toast'
 import MevonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import store from '@/store'
 
 Vue.config.productionTip = false
 
@@ -20,11 +21,12 @@ Vue.use(MevonEditor)
 const app = new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(app)
+  
   app.$toast.show("数据加载中",1000)
   next()
 })

@@ -19,7 +19,7 @@ export default {
     },
     mixins:[GetH],
     mounted(){
-        console.log('catitem',this.H)
+        
     }
 }
 </script>

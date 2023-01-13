@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <Tabbar></Tabbar>
+  <div id="app" :class="{appPadding:!this.$route.path.includes('/api')}">
+    <Tabbar v-if="!this.$route.path.includes('/api')"></Tabbar>
     <router-view/>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
 
 <style lang="less">
 @import './assets/css/base.css';
-#app{
+.appPadding{
   padding-bottom: 80px;
 }
 </style>

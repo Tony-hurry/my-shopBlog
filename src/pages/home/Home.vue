@@ -42,7 +42,5 @@ export default{
 }
 </script>
 <style scoped lang="less">
-.home{
-    
-}
+
 </style>

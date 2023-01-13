@@ -5,7 +5,8 @@ import Router from 'vue-router'
 const Home = ()=> import('@/pages/home/Home')
 const Apps = ()=> import('@/pages/apps/Apps')
 const Personal = ()=> import('@/pages/personal/Personal')
-
+const Mblog = ()=>import('@/subPages/mblog/Mblog')
+const BlogEditor = ()=>import('@/subPages/blogeditor/BlogEditor')
 Vue.use(Router)
 
 const router=[
@@ -27,6 +28,16 @@ const router=[
     path: '/personal',
     name: 'Personal',
     component: Personal
+  },
+  {
+    path:'/api/mblog/:index',
+    name:'mblog',
+    component:Mblog
+  },
+  {
+    path:'/api/openEditor',
+    name:BlogEditor,
+    component:BlogEditor
   }
 ]
 

@@ -1,17 +1,35 @@
 <template>
     <div class="apps">
         <Header></Header>
-        <BlogEditor></BlogEditor>
+        <BlogList @showBlog="blogHandler"></BlogList>
+        
     </div>
 </template>
 <script>
-import BlogEditor from './childPages/BlogEditor.vue'
+
 import Header from '@/components/common/header/Header'
+import BlogList from './childPages/BlogList.vue'
+
 export default {
     name: 'Apps',
     components: {
-        BlogEditor,
-        Header
+        Header,
+        BlogList
+    },
+    created(){
+
+        
+    },
+    data(){
+        return {
+            
+        }
+    },
+    methods:{
+        blogHandler(index){
+            
+            this.$router.push('/api/mblog/'+index)
+        }
     }
 }
 </script>
