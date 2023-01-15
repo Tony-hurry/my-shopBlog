@@ -62,22 +62,31 @@ export default {
             this.pagination.currentPage = this.$refs.pagination.internalCurrentPage - 1
             this.getPagination()
 
+        },
+        queryStatus() {
+           
+            if (Object.keys(this.$store.state.user).length == 0) {
+                this.pagination.mblogs = []
+
+                this.$notify({
+                    title: '通知',
+                    message: '你还未登陆',
+                    position: 'top-left'
+                });
+                return
+            }
+
+            getAllBlog().then(res => {
+                this.pagination.total = res.data.message.total
+                this.getPagination()
+            })
         }
     },
-    created() {
-        if (Object.keys(this.$store.state.user).length == 0) {
-            this.pagination = []
-            this.$notify({
-                title: '通知',
-                message: '你还未登陆',
-                position: 'top-left'
-            });
-            return
-        }
-        getAllBlog().then(res => {
-            this.pagination.total = res.data.message.total
-            this.getPagination()
-        })
+    activated() {
+        this.queryStatus()
+    },
+    mounted() {
+
 
     }
 }

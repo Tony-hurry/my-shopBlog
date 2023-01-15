@@ -3,12 +3,12 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 const store = new Vuex.Store({
     state:{
-        user:sessionStorage.getItem('user')||{},
+        user:JSON.parse(sessionStorage.getItem('user')||'{}'),
         token:sessionStorage.getItem('token')||''
     },
     mutations:{
         saveUserToSession(state){
-            sessionStorage.setItem('user',state.user)
+            sessionStorage.setItem('user',JSON.stringify(state.user))
         },
         updateUser(state,user){
             state.user = user
