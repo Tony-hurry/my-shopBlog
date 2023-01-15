@@ -1,16 +1,22 @@
 <template>
   <div id="app" :class="{appPadding:!this.$route.path.includes('/api')}">
     <Tabbar v-if="!this.$route.path.includes('/api')"></Tabbar>
-    <router-view/>
+    <keep-alive include="Apps">
+      <router-view/>
+    </keep-alive>
+    
+    <BackArrow v-if="this.$route.path.includes('/api')"></BackArrow>
   </div>
 </template>
 
 <script>
 import Tabbar from '@/components/common/tabbar/Tabbar'
+import BackArrow from '@/components/common/backArrow/BackArrow'
 export default {
   name: 'App',
   components:{
-    Tabbar
+    Tabbar,
+    BackArrow
   }
 }
 </script>

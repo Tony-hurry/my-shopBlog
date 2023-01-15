@@ -35,22 +35,13 @@ export default {
             currentIndex: 0
         }
     },
-    mounted() {
-
-        
-        switch (this.$route.path) {
-            case '/':
-            case '/home':
-                this.currentIndex = 0
-                break;
-            case '/apps':
-                this.currentIndex = 1
-                break;
-            case '/personal':
-                this.currentIndex = 2
-                break;
+    watch: {
+        $route(newVal, oldVal) {
+            this.setActive(newVal.path)
         }
-
+    },
+    mounted() {
+        
     },
     methods: {
         changeRouter(index) {
@@ -67,6 +58,20 @@ export default {
                     break;
             }
             this.currentIndex = index
+        },
+        setActive(routerUrl) {
+            switch (routerUrl) {
+                case '/':
+                case '/home':
+                    this.currentIndex = 0
+                    break;
+                case '/apps':
+                    this.currentIndex = 1
+                    break;
+                case '/personal':
+                    this.currentIndex = 2
+                    break;
+            }
         }
     }
 }

@@ -8,7 +8,7 @@
             <span>{{ this.$store.state.user.name }}</span>
         </div>
         <div class="linkd">
-            <el-link type="success">主页</el-link>
+            <el-link type="success" @click="gotoWelcome">主页</el-link>
             <span class="setBorder" @click="editHandler"><el-link type="warning">发表文章</el-link></span>
             <el-link type="danger">退出</el-link>
         </div>
@@ -27,6 +27,9 @@ export default {
         editHandler(){
             this.$emit('editClick')
             this.$router.push('/api/openEditor')
+        },
+        gotoWelcome(){
+            this.$router.push('/api/gotoWelcome')
         }
     }
 }   

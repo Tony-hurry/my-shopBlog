@@ -2,7 +2,7 @@
     <div class='mblog' v-if="Object.keys(info).length != 0">
         <Header></Header>
         <div class="container">
-            <h2>{{ info.title }}</h2>
+            <h1>{{ info.title }}</h1>
             <el-divider></el-divider>
             <div v-html="info.blog"></div>
         </div>
@@ -44,7 +44,16 @@ export default {
         margin-top: 10px;
         width: 90%;
         border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+        h1 {
+            display: block;
+            height:80px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            line-height: 80px;
+            text-align:center;
+            color:red;
+        }
     }
 }
 </style>

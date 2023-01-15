@@ -7,6 +7,7 @@ const Apps = ()=> import('@/pages/apps/Apps')
 const Personal = ()=> import('@/pages/personal/Personal')
 const Mblog = ()=>import('@/subPages/mblog/Mblog')
 const BlogEditor = ()=>import('@/subPages/blogeditor/BlogEditor')
+const Welcome = ()=>import('@/subPages/welcome/Welcome')
 Vue.use(Router)
 
 const router=[
@@ -22,7 +23,10 @@ const router=[
   {
     path: '/apps',
     name: 'Apps',
-    component: Apps
+    component: Apps,
+    meta:{
+      keepAlive:true
+    }
   },
   {
     path: '/personal',
@@ -38,6 +42,11 @@ const router=[
     path:'/api/openEditor',
     name:BlogEditor,
     component:BlogEditor
+  },
+  {
+    path:'/api/gotoWelcome',
+    name:Welcome,
+    component:Welcome
   }
 ]
 

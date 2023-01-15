@@ -3,13 +3,30 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 const store = new Vuex.Store({
     state:{
-        user:{
-            avator:'https://pic.imgdb.cn/item/63c0f8d4be43e0d30eb140ac.jpg',
-            name:'tony'
+        user:sessionStorage.getItem('user')||{},
+        token:sessionStorage.getItem('token')||''
+    },
+    mutations:{
+        saveUserToSession(state){
+            sessionStorage.setItem('user',state.user)
+        },
+        updateUser(state,user){
+            state.user = user
+            this.commit('saveUserToSession')
             
+        },
+        saveTokenToSession(state){
+            sessionStorage.setItem('token',state.token)
+        },
+        updateToken(state,token){
+            state.token=token
+            console.log(this)
+            this.commit('saveTokenToSession')
+        },
+        clearUser(state){
+            state.user = {}
         }
     },
-    mutations:{},
     actions:{},
     getters:{
 

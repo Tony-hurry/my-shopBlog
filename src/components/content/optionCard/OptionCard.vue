@@ -1,6 +1,6 @@
 <template>
     <div class='optionCard'>
-        <div class="option" v-for="(item,index) in options" :key="index">
+        <div class="option" v-for="(item,index) in options" :key="index" @click="clickHandler(index)">
             <div class="option-left">
                 {{ item }}
             </div>
@@ -13,15 +13,24 @@
 <script>
 export default {
     name: 'OptionCard',
+    props:{
+       
+    },
     data(){
         return {
             options:[
                 '内容管理',
                 '粉丝数据',
                 '内容数据',
-                '收益明细'
-
+                '退出登录'
             ]
+        }
+    },
+    methods:{
+        clickHandler(index){
+            if(index === this.options.length-1){
+                this.$store.commit('clearUser')
+            }
         }
     }
 }
@@ -31,6 +40,7 @@ export default {
     width:80%;
     border-radius: 10px;
     margin:10px auto;
+    cursor:pointer;
     background-color: #efefef;
     .option{
         height:80px;

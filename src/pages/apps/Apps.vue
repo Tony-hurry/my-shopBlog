@@ -2,7 +2,6 @@
     <div class="apps">
         <Header></Header>
         <BlogList @showBlog="blogHandler"></BlogList>
-        
     </div>
 </template>
 <script>
@@ -16,19 +15,18 @@ export default {
         Header,
         BlogList
     },
-    created(){
-
-        
+    created() {
+        //this.$router.push({path:sessionStorage.getItem('routeNow')})
     },
-    data(){
+    data() {
         return {
-            
+
         }
     },
-    methods:{
-        blogHandler(index){
-            
-            this.$router.push('/api/mblog/'+index)
+    methods: {
+        blogHandler(index) {
+
+            this.$router.push('/api/mblog/' + index)
         }
     }
 }

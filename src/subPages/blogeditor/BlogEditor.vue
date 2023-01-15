@@ -24,6 +24,7 @@
 </template>
 <script>
 import Header from '@/components/common/header/Header'
+import { postCommitBlog } from '@/network/subPages.js'
 export default {
     name: 'BlogEditor',
     components: {
@@ -40,7 +41,7 @@ export default {
             rules: {
                 title: [
                     { required: true, message: '请输入活动名称', trigger: 'blur' },
-                    { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                    { min: 1, max: 25, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                 ],
                 description: [
                     { required: true, message: '请选择活动区域', trigger: 'blur' }
@@ -53,9 +54,49 @@ export default {
     },
     methods: {
         submitForm(formName) {
+
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    alert('submit!');
+
+                    const h = this.$createElement;
+                    this.$msgbox({
+                        title: '消息',
+                        message: h('p', null, [
+                            h('span', null, "确认提交吗？")
+
+                        ]),
+                        showCancelButton: true,
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        beforeClose: (action, instance, done) => {
+                            if (action === 'confirm') {
+                                instance.confirmButtonLoading = true;
+                                instance.confirmButtonText = '执行中...';
+                                postCommitBlog(this.ruleForm).then(res => {
+                                    if (res.data.meta.status !== 200) return done('请求失败')
+                                    done()
+                                    instance.confirmButtonLoading = false;
+                                })
+
+                            } else {
+                                done()
+                            }
+                        }
+                    }).then(action => {
+
+                        this.$message({
+                            type: 'info',
+                            message: '提交成功！'
+                        });
+                    })
+
+
+
+
+
+
+
+
                 } else {
                     console.log('error submit!!');
                     return false;
