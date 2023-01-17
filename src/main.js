@@ -8,6 +8,9 @@ import Toast from '@/components/common/toast'
 import MevonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import store from '@/store'
+import VueDirectiveImagePreviewer from 'vue-directive-image-previewer'
+import 'vue-directive-image-previewer/dist/assets/style.css'
+
 /* import { BootstrapVue,BootstrapVueIcons} from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css' */
@@ -16,6 +19,10 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(Toast)
 Vue.use(MevonEditor)
+Vue.use(VueDirectiveImagePreviewer,{
+  copy:false,
+  zIndex:10 
+})
 /* Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons) */
 

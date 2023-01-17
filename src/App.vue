@@ -1,6 +1,6 @@
 <template>
   <div id="app" :class="{appPadding:!this.$route.path.includes('/api')}">
-    <Tabbar v-if="!this.$route.path.includes('/api')"></Tabbar>
+    <Tabbar v-show="!this.$route.path.includes('/api')"></Tabbar>
     <keep-alive :include="Object.keys(this.$store.state.user).length === 0 ? '':'Apps'">
       <router-view/>
     </keep-alive>
@@ -19,7 +19,7 @@ export default {
     BackArrow
   },
   created(){
-    console.log(this.$store.state.user)
+   
   }
 }
 </script>

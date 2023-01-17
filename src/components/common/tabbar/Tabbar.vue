@@ -36,7 +36,8 @@ export default {
         }
     },
     watch: {
-        $route(newVal, oldVal) {
+        '$route.path'(newVal, oldVal) {
+           
             this.setActive(newVal.path)
         }
     },

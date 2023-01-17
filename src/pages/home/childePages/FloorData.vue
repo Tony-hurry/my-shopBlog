@@ -6,11 +6,11 @@
             </div>
             <div class="product">
                 <div class="shopLeft">
-                    <img :src="item.product_list[0].image_src" alt="">
+                    <img @click="gotoShopList(item.product_list[0].navigator_url)" :src="item.product_list[0].image_src" alt="">
                 </div>
                 <div class="shopRight">
-                    <div class="product-item" v-for="(item2, index2) in item.product_list" :key="index2" v-if="index2 != 0">
-                        <img  :src="item2.image_src" alt="">
+                    <div  class="product-item" v-for="(item2, index2) in item.product_list" :key="index2" v-if="index2 != 0">
+                        <img  @click="gotoShopList(item2.navigator_url)" :src="item2.image_src" alt="">
 
                     </div>
                 </div>
@@ -32,7 +32,10 @@ export default {
     },
     mixins: [GetH],
     methods: {
-
+        gotoShopList(strUrl){
+            const query = strUrl.split('=')[1]
+            this.$router.push('/api/shopList/'+query)
+        }
     }
 }
 </script>

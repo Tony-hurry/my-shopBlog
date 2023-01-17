@@ -6,11 +6,11 @@ export const getAllBlog=(data)=>{
         data
     })
 }
-export const getBlogById=(index)=>{
+export const postBlogById=(data)=>{
     return queryLocal({
-        url:'api/getBlogById',
-        method:'GET',
-        params:{'index':index}
+        url:'api/postBlogById',
+        method:'POST',
+        data
     })
 }
 export const postPagination=(data)=>{

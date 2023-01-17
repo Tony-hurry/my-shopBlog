@@ -19,7 +19,7 @@
     </div>
 </template>
 <script>
-import { postPagination, getAllBlog } from '@/network/apps'
+import { postPagination } from '@/network/apps'
 export default {
     name: 'BlogList',
     props: {
@@ -46,10 +46,16 @@ export default {
             this.$emit('showBlog', index)
         },
         getPagination() {
+            
+            
+            
             const reqData = {
-                pageSize: this.pagination.pageSize,
-                currentPage: this.pagination.currentPage
+                
+                mblogs:this.$store.state.user.allBlog.slice(this.pagination.currentPage*this.pagination.pageSize,
+            (this.pagination.currentPage*this.pagination.pageSize+this.pagination.pageSize )> this.pagination.total ? this.pagination.total-1:this.pagination.currentPage*this.pagination.pageSize+this.pagination.pageSize)
             }
+
+            
             postPagination(reqData).then(res => {
 
                 if (res.data.meta.status != 200) return this.$toast.show('请求失败')
@@ -76,10 +82,9 @@ export default {
                 return
             }
 
-            getAllBlog().then(res => {
-                this.pagination.total = res.data.message.total
-                this.getPagination()
-            })
+            this.pagination.total = this.$store.state.user.allBlog.length
+            this.getPagination()
+            
         }
     },
     activated() {

@@ -8,6 +8,8 @@ const Personal = ()=> import('@/pages/personal/Personal')
 const Mblog = ()=>import('@/subPages/mblog/Mblog')
 const BlogEditor = ()=>import('@/subPages/blogeditor/BlogEditor')
 const Welcome = ()=>import('@/subPages/welcome/Welcome')
+const ShopDetail = ()=>import('@/subPages/shopAbout/ShopDetail')
+const ShopList = ()=>import('@/subPages/shopAbout/ShopList')
 Vue.use(Router)
 
 const router=[
@@ -47,6 +49,16 @@ const router=[
     path:'/api/gotoWelcome',
     name:Welcome,
     component:Welcome
+  },
+  {
+    path:'/api/shopDetail/:goods_id',
+    name:ShopDetail,
+    component:ShopDetail
+  },
+  {
+    path:'/api/shopList/:query',
+    name:ShopList,
+    component:ShopList
   }
 ]
 

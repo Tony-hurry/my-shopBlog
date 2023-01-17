@@ -2,15 +2,15 @@
     <div class='mblog' v-if="Object.keys(info).length != 0">
         <Header></Header>
         <div class="container">
-            <h1>{{ info.title }}</h1>
+            <h1>{{ this.$store.state.user.allBlog[this.$route.params.index].title }}</h1>
             <el-divider></el-divider>
-            <div v-html="info.blog"></div>
+            <div v-html="info"></div>
         </div>
     </div>
 </template>
 <script>
 import Header from '@/components/common/header/Header'
-import { getBlogById } from '@/network/apps.js'
+import { postBlogById } from '@/network/apps.js'
 export default {
     name: 'Mblog',
     components: {
@@ -18,18 +18,19 @@ export default {
     },
     data() {
         return {
-            info: {}
+            info: ''
         }
     },
     created() {
 
-        getBlogById(this.$route.params.index).then(res => {
+        
+        postBlogById(this.$store.state.user.allBlog[this.$route.params.index]).then(res => {
 
             if (res.data.meta.status !== 200) return res.meta.msg
-            this.info = res.data.message[0]
+            this.info = res.data.message
             const markDown = require('markdown-it')
             const md = new markDown()
-            this.info.blog = md.render(this.info.blog)
+            this.info = md.render(this.info)
         })
     }
 }

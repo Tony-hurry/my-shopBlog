@@ -34,7 +34,7 @@
 </template>
 <script>
 import GetH from '@/mixins/GetH'
-import {postLoginUser} from '@/network/personal'
+import { postLoginUser } from '@/network/personal'
 export default {
     name: 'LoginCard',
     mixins: [GetH],
@@ -53,18 +53,21 @@ export default {
     },
     methods: {
         onSubmit() {
-            console.log('submit!');
-            postLoginUser(this.form).then(res=>{
+          
+            postLoginUser(this.form).then(res => {
                 const token = res.data.message.token
-                this.$store.commit('updateToken',token)
-                this.$store.commit('updateUser',res.data.message.user)
-                if(res.data.meta.status === 200){
-                    this.$toast.show(res.data.meta.msg)
+                this.$toast.show(res.data.meta.msg)
+                if (res.data.meta.status === 200) {
+                    let user = JSON.parse(res.data.message.user)
+                    user.allBlog = JSON.parse(user.allBlog)
+                    this.$store.commit('updateToken', token)
+                   
+                    this.$store.commit('updateUser', user)
                     this.$emit('cancel')
                 }
             })
         },
-        cancel(){
+        cancel() {
             this.$emit('cancel')
         }
     }
@@ -169,16 +172,16 @@ export default {
                 overflow: hidden;
                 display: flex;
                 flex-direction: column;
-                
+
                 justify-content: center;
 
                 h2 {
-                    font-size:50px;
+                    font-size: 50px;
                     margin-bottom: 20px;
                     text-align: center;
                 }
 
-                
+
 
 
             }
